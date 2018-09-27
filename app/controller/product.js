@@ -4,13 +4,13 @@ const {
     Controller
 } = require('egg')
 
-const ProductModel = require('./model/product')
+// const ProductModel = require('../model/product') // 改用loader来获取model
 
-const productModel = new ProductModel()
+// const productModel = new ProductModel()
 
 class ProductController extends Controller {
     async index() {
-        const products = await productModel.list()
+        const products = await this.ctx.model.product.list()
         this.ctx.body = {
             products
         };
@@ -20,7 +20,8 @@ class ProductController extends Controller {
         const {
             id
         } = this.ctx.query
-        const product = await productModel.getOneById()
+        // const product = await productModel.getOneById()
+        const product = await this.ctx.model.product.getOneById(id)
         this.ctx.body = {
             product
         }
@@ -30,7 +31,8 @@ class ProductController extends Controller {
         const {
             product
         } = this.ctx.request.body
-        await productModel.addOne(product)
+        // await productModel.addOne(product)
+        this.ctx.model.product.addOne(product)
         this.ctx.body = {
             product
         }
