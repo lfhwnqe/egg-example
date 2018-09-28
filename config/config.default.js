@@ -2,7 +2,10 @@
 
 module.exports = appInfo => {
   const config = exports = {};
-
+  config.mongoose = {
+    url: 'mongodb://127.0.0.1/blog',
+    options: {},
+  };
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1537952980528_5005';
 
@@ -17,3 +20,8 @@ module.exports = appInfo => {
 
   return config;
 };
+
+// exports.mongoose = {
+//   url: 'mongodb://127.0.0.1/blog',
+//   options: {},
+// };
