@@ -10,6 +10,7 @@ class UserService extends Service {
     }
 
     async add(username, password) {
+        if (!username || !password) throw new Error('必须输入账号名和密码')
         const model = this.ctx.model.user
         let user = await model.findOne({
             username
@@ -19,6 +20,22 @@ class UserService extends Service {
             username,
             password
         })
+        return user._id
+    }
+
+    async modify(username, oldPassword, newPassword) {
+        if (!username && !oldPassword && !newPassword) throw new Error('必须输入账号名和密码')
+        const model = this.ctx.model.user
+        const obj = {
+            username,
+            password: oldPassword
+        }
+        let user = await model.findOneAndUpdate(obj, {
+            $set: {
+                password: newPassword
+            }
+        })
+        if (!user) throw new Error('不知道犯了什么错，反正修改密码错了')
         return user._id
     }
 

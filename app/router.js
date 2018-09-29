@@ -14,7 +14,7 @@ module.exports = app => {
   router.post('/product/addOne', controller.product.addOne)
   router.post('/cart/addProductToCart', app.middleware.auth(), controller.cart.addProductToCart)
   // router.get('/admin/articles', controller.admin.articles);
-  router.post('/user', controller.user.add) //增加和登陆
+  router.post('/newUser', controller.user.add) //增加
   router.put('/user', controller.user.modify) // 修改
-  router.get('/user', controller.user.login) // 登陆
+  router.post('/user', controller.user.login) // 登陆
 };

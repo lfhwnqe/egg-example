@@ -26,9 +26,11 @@ class UserController extends Controller {
   async modify() {
     const {
       username,
-      password
+      oldPassword,
+      newPassword
     } = this.ctx.request.body
-    const userId = await this.ctx.service.user.login(username, password)
+    const userId = await this.ctx.service.user.modify(username, oldPassword,
+      newPassword)
     this.ctx.body = {
       userId
     }
