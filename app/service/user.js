@@ -52,7 +52,6 @@ class UserService extends Service {
         const isUserValid = await this.ctx.model.user.findOne({
             _id: userId
         })
-        console.log('isUserValid==>>', isUserValid)
         return isUserValid ? true : false
     }
 }

@@ -6,14 +6,14 @@ module.exports = app => {
         var UserSchema = new Schema({
             username: {
                 type: String,
-                require: true,
+                required: true,
                 max: 64,
                 min: [0, '必须输入用户名'],
                 unique: true
             },
             password: {
                 type: String,
-                require: true,
+                required: true,
                 min: [0, '必须输入密码'],
                 max: 32
             }

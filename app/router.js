@@ -17,4 +17,8 @@ module.exports = app => {
   router.post('/newUser', controller.user.add) //增加
   router.put('/user', controller.user.modify) // 修改
   router.post('/user', controller.user.login) // 登陆
+
+  router.get('/articles', controller.article.list)
+  router.post('/articles', app.middleware.auth(), controller.article.addArticle)
+  router.put('/articles', app.middleware.auth(), controller.article.modifyArticle)
 };
